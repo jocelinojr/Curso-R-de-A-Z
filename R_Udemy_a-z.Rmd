@@ -1,0 +1,104 @@
+---
+title: "Anotações do Curso R programming A-Z"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Primeira parte (Core programming)
+
+### Tipos de Variáveis
+
+```{r vriáveis}
+  # por default, é double
+  d <- 3 
+  print(typeof(d))
+  
+  # se quisermos inteiro, temos que colocar um L ao final do número
+  i <- 3L
+  print(typeof(i))
+  
+```
+
+
+### Estrutura básica do if, for e while
+#### if (){} ### 
+#### for () {} ###
+#### while(){} ###
+
+
+### Exercício 1  - Testando a Lei dos Grandes Números (Law of Large Numbers)
+
+
+```{r exercício}
+
+# seta o tamanho da amostra
+N <- 30000
+numeros_ok <- NULL
+set.seed(11)
+
+# testando uma forma de verificar se um número cai num intervalo sem usar if
+0.21 %in% (-1:1)
+
+for (i in 1:N){
+  # generates our random number
+  num <- rnorm(1, mean = 0, sd = 1)
+  # if the random generated number falls into the -1 to 1 range, adds it to the response vector
+  if ((num <= 1) & (num >= -1)){
+    numeros_ok <- rbind(numeros_ok, num)
+  }
+  
+}
+
+# percent of the numbers that fallen into the goal range
+(length(numeros_ok)/N) * 100
+
+# Versão 2
+#----------------------------------------------------------------------
+
+
+# counter of the numbers that fall into the interval we are interested in
+medias <- NULL
+
+for (z in 1:100){
+  # inicializa nossos contadores
+  count_normal <- 0
+  
+  for (y in rnorm(N)){
+    
+    if (y <= 1 & y >= -1){
+      count_normal <- count_normal + 1
+      
+    } # if
+  } # for
+  
+  # calcula a média
+  media <- (count_normal/N)*100
+  # guarda a média que acabamos de rodar
+  medias <- rbind(medias, media)
+  
+} # for
+
+hist(medias)
+
+
+
+```
+
+### Criando Vetores
+Podemos criar com a combine function c(), usando ":" e com as funções seq() e rep()
+```{r vetores}
+V1 <- c(12, 25.3, 6, 110)
+
+# A função seq tem a vantagem de poder colocar o passo
+V2 <- seq(1, 15, 2)
+
+V3 <- rep(2, 5)
+
+```
+
+
+
+
