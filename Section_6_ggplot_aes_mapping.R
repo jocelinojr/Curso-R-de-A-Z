@@ -26,6 +26,24 @@ p + geom_line()
 p + geom_point() + geom_line()
 p + geom_point() + geom_line()
 
+#----------------------------------------------------
+# Mapping x setting
+
+# mapping
+p + geom_point(aes(size=budget.millions))
+
+# setting
+p + geom_point(size=10, colour="Darkgreen")
+
+# histograms and Desnity plots
+s <- ggplot(data=movies, aes(x=budget.millions))
+
+# mapping the color of the histogram
+s + geom_histogram(binwidth = 10, aes(fill=genre), color="White")
+# adds a border
+
+
+s + geom_density()
 
 
 
